@@ -161,7 +161,6 @@ class LocationSeeder extends Seeder
                     'parent_id' => $location->id,
                     'name_tm' => $objs[$i][2][$j][0],
                     'name_en' => $objs[$i][2][$j][1],
-                    'delivery_fee' => $objs[$i][2][$j][2],
                     'sort_order' => $j + 1,
                 ]);
             }

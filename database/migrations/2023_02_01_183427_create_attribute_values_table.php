@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('attribute_id')->references('id')->on('attributes')->cascadeOnDelete();
             $table->string('name_tm');
             $table->string('name_en')->nullable();
-            $table->unsignedInteger('sort_order');
+            $table->unsignedInteger('sort_order')->default(1);
         });
     }
 

@@ -29,7 +29,8 @@ class YearSeeder extends Seeder
 
         foreach($objs as $obj) {
             Year::create([
-                'name' => $obj
+                'name' => $obj,
+                'slug' => $obj
             ]);
         }
     }

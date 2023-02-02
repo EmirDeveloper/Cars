@@ -14,19 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            
+            $table->unsignedBigInteger('motor_id')->index()->nullable();
+            $table->foreign('motor_id')->references('id')->on('attribute_values')->nullOnDelete();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
+     * 
      * @return void
      */
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['color_id', 'size_id']);
+            //
         });
     }
 };

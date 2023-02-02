@@ -27,14 +27,15 @@ return new class extends Migration
             $table->foreign('color_id')->references('id')->on('colors')->cascadeOnDelete();
             $table->string('name_tm');
             $table->string('name_en')->nullable();
-            $table->string('product_name_tm');
-            $table->string('product_name_en')->nullable();
+            $table->string('full_name_tm');
+            $table->string('full_name_en')->nullable();
             $table->unsignedFloat('price')->default(0);
             $table->text('description')->nullable();
             $table->boolean('swap')->default(0);
             $table->boolean('credit')->default(0);
             $table->unsignedInteger('viewed')->default(0);
             $table->unsignedInteger('sold')->default(0);
+            $table->unsignedInteger('favorites')->default(0);
             $table->string('slug')->unique();
             $table->timestamps();
         });
