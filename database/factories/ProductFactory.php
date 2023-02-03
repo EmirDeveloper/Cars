@@ -50,10 +50,6 @@ class ProductFactory extends Factory
             'location_id' => $location->id,
             'motor_id' => isset($motor) ? $motor->id : null,
 
-            'code' => 'c' . $category->id
-                . '-b' . $brand->id
-                . (isset($motor) ? '-g' . $motor->id : ''),
-
             'name_tm' => $nameTm,
             'name_en' => $nameEn,
             'full_name_tm' => $fullNameTm,
@@ -61,9 +57,8 @@ class ProductFactory extends Factory
             'credit' => fake()->boolean(30),
             'swap' => fake()->boolean(30),
             'phone' => rand(60000000, 65999999),
-            'slug' => str()->slug($fullNameTm) . '-' . str()->random(10),
             'price' => fake()->randomFloat($nbMaxDecimals = 1, $min = 10, $max = 100),
-            'created_at' => fake()->dateTimeBetween('-1 year', 'now')->format('Y-m-d H:i:s'),
+            'created_at' => fake()->dateTimeBetween('-5 month', 'now')->format('Y-m-d H:i:s'),
             'viewed' => rand(200, 500)
         ];
     }

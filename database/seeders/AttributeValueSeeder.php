@@ -23,7 +23,14 @@ class AttributeValueSeeder extends Seeder
                 ['name_tm' => '3', 'name_en' => null],
                 ['name_tm' => '3.5', 'name_en' => null],
                 ['name_tm' => '4', 'name_en' => null]
-            ]]
+            ]],
+            ['name_tm' => 'Reňkler', 'name_en' => 'Colors', 'product_name' => true, 'values' => [
+                ['name_tm' => 'Ak', 'name_en' => 'White'],
+                ['name_tm' => 'Gara', 'name_en' => 'Black'],
+                ['name_tm' => 'Sary', 'name_en' => 'Yellow'],
+                ['name_tm' => 'Gök', 'name_en' => 'Blue'],
+                ['name_tm' => 'Ýaşyl', 'name_en' => 'Green']
+            ]],
         ];
 
         for ($i = 0; $i < count($objs); $i++) {

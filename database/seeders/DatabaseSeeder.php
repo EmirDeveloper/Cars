@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             AttributeValueSeeder::class,
             LocationSeeder::class,
             YearSeeder::class,
-            ColorSeeder::class,
         ]);
 
         Product::factory()->count(2000)->create();
@@ -39,6 +38,7 @@ class DatabaseSeeder extends Seeder
                         'phone' => $verification->phone,
                         'password' => bcrypt($verification->code),
                         'created_at' => $verification->created_at,
+                        'updated_at' => $verification->updated_at,
                     ]);
             }
         }

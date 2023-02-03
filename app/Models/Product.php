@@ -22,7 +22,7 @@ class Product extends Model
     protected static function booted()
     {
         static::saving(function ($obj) {
-            $obj->slug = str()->slug($obj->full_name_tm);
+            $obj->slug = str()->slug($obj->full_name_tm) . '-' . str()->random(10);
         });
     }
 
@@ -42,12 +42,6 @@ class Product extends Model
     public function year()
     {
         return $this->belongsTo(Year::class);
-    }
-
-
-    public function color()
-    {
-        return $this->belongsTo(Color::class);
     }
 
 

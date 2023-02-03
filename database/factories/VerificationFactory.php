@@ -20,8 +20,8 @@ class VerificationFactory extends Factory
             'phone' => fake()->unique()->numberBetween(60000000, 65999999),
             'code' => fake()->numberBetween(10000, 99999),
             'status' => fake()->boolean(80),
-            'created_at' => fake()->dateTimeBetween('-1 year', 'now')->format('Y-M-D H:i:s'),
-            'update_at' => fake()->dateTimeBetween('-3 month', 'now')->format('Y-M-D H:i:s'),
+            'created_at' => fake()->dateTimeBetween('-1 year', 'now')->format('Y-m-d H:i:s'),
+            'updated_at' => fake()->dateTimeBetween('-3 month', 'now')->format('Y-m-d H:i:s'),
         ];
     }
 }
