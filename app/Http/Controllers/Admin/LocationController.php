@@ -57,7 +57,8 @@ class LocationController extends Controller
     }
 
 
-    public function edit($id) {
+    public function edit($id) 
+    {
         $obj = Location::findOrfail($id);
         $parents = Location::where('id', '!=', $obj->id)
             ->whereNull('parent_id')
