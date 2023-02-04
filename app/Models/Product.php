@@ -72,12 +72,6 @@ class Product extends Model
     }
 
 
-    public function getPrice()
-    {
-        return round($this->price * (1 - $this->getDiscountPercent() / 100), 1);
-    }
-
-
     public function getFullName()
     {
         if (app()->getLocale() == 'en') {
