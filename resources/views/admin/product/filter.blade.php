@@ -36,6 +36,6 @@
         <input class="form-control form-control-sm" type="search" name="q" placeholder="{{ @trans('app.search') }}">
     </div>
     <div class="col-auto">
-        <button type="submit" class="btn btn-dark btn-sm"><i class="bi-search"></i></button>
+        <button type="submit" class="btn btn-primary btn-sm"><i class="bi-search"></i></button>
     </div>
 </form>

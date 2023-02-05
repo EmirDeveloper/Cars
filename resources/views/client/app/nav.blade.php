@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-black" aria-label="navbar">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary" aria-label="navbar">
     <div class="container-xl">
-        <a class="navbar-brand" href="{{ route('home') }}"><i class="bi-cart4"></i> @lang('app.app-name')</a>
+        <a class="navbar-brand" href="{{ route('home') }}"><img src="https://tmcars.info/assets/logoV5-3c6d5d6233ec99725cbfc24d0c20ceee.png" alt="w" class="col-9"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

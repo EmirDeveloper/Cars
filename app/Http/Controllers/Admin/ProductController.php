@@ -103,7 +103,8 @@ class ProductController extends Controller
         $request->validate([
             'brand' => 'required|integer|min:1',
             'category' => 'required|integer|min:1',
-            'color' => 'nullable|integer|min:1',
+            'color' => 'nullable|string|max:255',
+            'motor' => 'nullable|string|max:255',
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
@@ -120,17 +121,14 @@ class ProductController extends Controller
         ]);
         $brand = Brand::findOrFail($request->brand);
         $category = Category::findOrFail($request->brand);
-        $gender = $request->has('gender') ? AttributeValue::findOrFail($request->gender) : null;
+        $motor = $request->has('motor') ? AttributeValue::findOrFail($request->motor) : null;
         $color = $request->has('color') ? AttributeValue::findOrFail($request->color) : null;
-        $size = $request->has('size') ? AttributeValue::findOrFail($request->size) : null;
 
         $fullNameTm = $brand->name . ' '
-            . $request->name_tm . ' '
             . (isset($motor) ? $motor->name_tm . ' ' : '')
             . (isset($color) ? $color->name_tm . ' ' : '')
             . $category->product_name_tm;
         $fullNameEn = $brand->name . ' '
-            . ($request->name_en ?: $request->name_tm) . ' '
             . (isset($motor) ? ($motor->name_en ?: $motor->name_tm) . ' ' : '')
             . (isset($color) ? ($color->name_en ?: $color->name_tm) . ' ' : '')
             . ($category->product_name_en ?: $category->product_name_tm);
@@ -138,7 +136,7 @@ class ProductController extends Controller
         $obj = Product::create([
             'category_id' => $category->id,
             'brand_id' => $brand->id,
-            'gender_id' => $gender->id ?: null,
+            'motor_id' => $motor->id ?: null,
             'color_id' => $color->id ?: null,
             'name_tm' => $request->name_tm,
             'name_en' => $request->name_en ?: null,

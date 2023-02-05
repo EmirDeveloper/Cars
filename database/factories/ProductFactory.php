@@ -33,12 +33,10 @@ class ProductFactory extends Factory
         $nameEn = null;
 
         $fullNameTm = $brand->name . ' '
-            . $nameTm . ' '
-            . (isset($motor) ? $motor->name_tm . ' ' : '')
+            . (isset($motor) ? 'Motory: ' . $motor->name_tm . ', ' : '')
             . $category->product_name_tm
-            . $location->name_tm;
+            . 'Ýeri: ' . $location->name_tm;
         $fullNameEn = $brand->name . ' '
-            . ($nameEn ?: $nameTm) . ' '
             . (isset($motor) ? ($motor->name_en ?: $motor->name_tm) . ' ' : '')
             . $category->product_name_en
             . $location->name_en;
@@ -57,9 +55,9 @@ class ProductFactory extends Factory
             'credit' => fake()->boolean(30),
             'swap' => fake()->boolean(30),
             'phone' => rand(60000000, 65999999),
-            'price' => fake()->randomFloat($nbMaxDecimals = 1, $min = 10, $max = 100),
+            'price' => fake()->randomFloat($nbMaxDecimals = 0, $min = 250, $max = 550),
             'created_at' => fake()->dateTimeBetween('-5 month', 'now')->format('Y-m-d H:i:s'),
-            'viewed' => rand(200, 500)
+            'viewed' => rand(200, 500),
         ];
     }
 }
