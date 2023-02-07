@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ProductController extends Controller
 {
@@ -173,6 +174,21 @@ class ProductController extends Controller
 
     public function show($slug) 
     {
-        return view('client.product.show');
+        $product = Product::where('slug', $slug)
+            ->with('category', 'brand')
+            ->firstOrFail();
+
+        $category = Category::findOrFail($product->category_id);
+        $products = Product::where('category_id', $category->id)
+            ->inRandomOrder()
+            ->take(6)
+            ->get();
+
+        return view('client.product.show')
+            ->with([
+                'product' => $product,
+                'category' => $category,
+                'products' => $products,
+            ]);
     }
 }

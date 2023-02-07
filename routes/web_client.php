@@ -16,7 +16,7 @@ Route::controller(ProductController::class)
         Route::get('product/create/{id}', 'create')->name('product.create')->where('id', '[0-9]+');
         Route::get('product/destroy/{id}', 'destroy')->name('product.destroy')->where('id', '[0-9]+');
         Route::get('product/update/{id}', 'update')->name('product.update')->where('id', '[0-9]+');
-        Route::get('product/show/{slug}', 'update')->name('product.show')->where('slug', '[A-Za-z0-9-]+');
+        Route::get('product/show/{slug}', 'show')->name('product.show')->where('slug', '[A-Za-z0-9-]+');
         Route::get('/product/{slug}', 'product')->name('product')->where('slug', '[A-Za-z0-9-]+');
         Route::get('/category/{slug}', 'category')->name('category')->where('slug', '[A-Za-z0-9-]+');
         Route::get('/location/{id}', 'location')->name('location')->where('id', '[0-9-]+');
