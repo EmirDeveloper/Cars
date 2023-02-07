@@ -53,7 +53,7 @@
                 <div class="mb-3">
                     @foreach($permissions as $permission)
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $permission['id'] }}" id="permission{{ $permission['id'] }}" name="permissions[]" {{ in_array($permission['id'], $obj->permissions) ? 'checked':'' }}>
+                            <input class="form-check-input" type="checkbox" value="{{ $permission['id'] }}" id="permission{{ $permission['id'] }}" name="permissions[]" {{ in_array($permission['id'], $obj->permissions ?: []) ? 'checked':'' }}>
                             <label class="form-check-label" for="permission{{ $permission['id'] }}">
                                 {{ $permission['name'] }}
                             </label>

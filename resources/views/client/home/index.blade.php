@@ -3,7 +3,9 @@
     @lang('app.app-name')
 @endsection
 @section('content')
-
-    HOME
-
+    @foreach($categories as $category)
+        @if($category->products->count() > 0)
+            @include('client.home.categories')
+        @endif
+    @endforeach
 @endsection

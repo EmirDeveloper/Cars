@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/splide.min.css') }}">
 </head>
 <body>
 @include('admin.layouts.header')
@@ -23,5 +24,6 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/splide.min.js') }}"></script>
 </body>
 </html>

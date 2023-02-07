@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             YearSeeder::class,
         ]);
 
-        Product::factory()->count(2000)->create();
+        Product::factory()->count(500)->create();
 
         for ($i = 0; $i < 50; $i++) {
             $verification = Verification::factory()->create();

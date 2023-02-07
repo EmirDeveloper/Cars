@@ -38,12 +38,12 @@ class CategoryController extends Controller
     public function store(Request $request) 
     {
         $request->validate([
-            'parent' => ['nullable|integer|min:1'],
-            'name_tm' => ['required|string|max:255'],
-            'name_en' => ['nullable|string|max:255'],
-            'product_name_tm' => ['nullable|string|max:255'],
-            'product_name_en' => ['nullable|string|max:255'],
-            'sort_order' => ['required|integer|min:1'],
+            'parent' => ['nullable', 'integer', 'min:1'],
+            'name_tm' => ['required', 'string', 'max:255'],
+            'name_en' => ['nullable', 'string', 'max:255'],
+            'product_name_tm' => ['nullable', 'string', 'max:255'],
+            'product_name_en' => ['nullable', 'string', 'max:255'],
+            'sort_order' => ['required', 'integer', 'min:1'],
             'image' => ['nullable', 'image', 'mimes:png', 'max:16', 'dimensions:width=200,height=200'],
         ]);
 

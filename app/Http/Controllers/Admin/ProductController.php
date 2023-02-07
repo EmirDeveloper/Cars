@@ -30,13 +30,11 @@ class ProductController extends Controller
 
         $objs = Product::when($q, function ($query, $q) {
             return $query->where(function ($query) use ($q) {
-                $query->orWhere('code', 'like', '%' . $q . '%');
                 $query->orWhere('name_tm', 'like', '%' . $q . '%');
                 $query->orWhere('name_en', 'like', '%' . $q . '%');
                 $query->orWhere('full_name_tm', 'like', '%' . $q . '%');
                 $query->orWhere('full_name_en', 'like', '%' . $q . '%');
                 $query->orWhere('slug', 'like', '%' . $q . '%');
-                $query->orWhere('barcode', 'like', '%' . $q . '%');
             });
         })
             ->when($f_brand, function ($query, $f_brand) {
