@@ -71,7 +71,7 @@
                             {{ $obj->sold }} 
                         </div> -->
                         <div>
-                            <i class="bi-heart-fill text-danger"></i>
+                            <i class="bi-binoculars-fill text-danger"></i>
                             {{ $obj->viewed }}
                         </div>
                     </td>
