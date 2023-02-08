@@ -137,9 +137,6 @@ class UserController extends Controller
             ['id' => 7, 'name' => trans('app.verifications')],
             ['id' => 8, 'name' => trans('app.locations')],
             ['id' => 9, 'name' => trans('app.users')],
-            ['id' => 10, 'name' => trans('app.authAttempts')],
-            ['id' => 11, 'name' => trans('app.ipAddresses')],
-            ['id' => 12, 'name' => trans('app.userAgents')],
         ];
     }
 }
