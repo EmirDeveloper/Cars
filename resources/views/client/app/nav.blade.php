@@ -26,13 +26,13 @@
                 @if(app()->getLocale() == 'en')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('language', 'tm') }}">
-                            <img src="{{ asset('img/flag/tm.svg') }}" alt="Türkmen" style="height:1rem;">
+                            <img src="{{ asset('img/flag/tkm.png') }}" alt="Türkmen" style="height:1rem;">
                         </a>
                     </li>
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('language', 'en') }}">
-                            <img src="{{ asset('img/flag/en.svg') }}" alt="English" style="height:1rem;">
+                            <img src="{{ asset('img/flag/eng.png') }}" alt="English" style="height:1rem;">
                         </a>
                     </li>
                 @endif

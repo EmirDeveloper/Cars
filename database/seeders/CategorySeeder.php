@@ -26,16 +26,6 @@ class CategorySeeder extends Seeder
                 ['Nissan', null, null, null],
                 ['Lexus', null, null, null]
             ]],
-            ['Awtoşaýlar', 'Cars', [
-                ['Mercedes Awtoşaýlar', null, null, null],
-                ['BMW Awtoşaýlar', null, null, null],
-                ['KIA Awtoşaýlar', null, null, null],
-                ['AUDI Awtoşaýlar', null, null, null],
-                ['Volswagen Awtoşaýlar', null, null, null],
-                ['Tayota Awtoşaýlar', null, null, null],
-                ['Nissan Awtoşaýlar', null, null, null],
-                ['Lexus Awtoşaýlar', null, null, null]
-            ]],
         ];
 
         for ($i=0; $i < count($objs); $i++) {

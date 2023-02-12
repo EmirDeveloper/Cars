@@ -1,11 +1,12 @@
 @extends('client.layouts.app')
-@section('title')
-    @lang('app.app-name')
-@endsection
+@section('title') @lang('app.app-description') @endsection
 @section('content')
-    @foreach($categories as $category)
-        @if($category->products->count() > 0)
-            @include('client.home.categories')
+    <div class="justify-content-center align-items-center">
+        @include('client.app.slider')
+    </div>
+    <div class="container-lg">
+        @if($new->count() > 0)
+            @include('client.home.new')
         @endif
-    @endforeach
+    </div>
 @endsection

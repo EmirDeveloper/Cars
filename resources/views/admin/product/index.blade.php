@@ -62,7 +62,7 @@
                     </td>
                     <td>
                         <div>
-                            {{ $obj->price }}<span class="fw-bold">K</span>
+                            {{ $obj->price }}<span class="fw-bold">TMT</span>
                         </div>
                     </td>
                     <td>
