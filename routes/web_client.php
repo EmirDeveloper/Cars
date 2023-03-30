@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
+use App\Http\Controllers\Client\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -8,6 +9,11 @@ Route::controller(HomeController::class)
     ->group(function () {
         Route::get('', 'index')->name('home');
         Route::get('/locale/{locale}', 'language')->name('language')->where('locale', '[a-z]+');
+    });
+
+Route::controller(CategoryController::class)
+    ->group(function () {
+        Route::get('category/show/{slug}', 'show')->name('category.show')->where('slug', '[A-Za-z0-9-]+');
     });
 
 Route::controller(ProductController::class)

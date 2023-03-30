@@ -6,6 +6,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbars">
             <ul class="navbar-nav ms-auto">
+                @foreach($categories as $category)
+                    <a class="link-light text-decoration-none mx-2" href="{{ route('category', $category->slug) }}">
+                        {{ $category->getName() }}
+                    </a>
+                @endforeach
                 @auth('customer_web')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
