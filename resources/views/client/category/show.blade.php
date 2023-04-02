@@ -5,17 +5,15 @@
 @section('content')
     <div class="container-xl mt-5 pt-5">
         <div class="fs-4 fw-semibold mb-3">
-            <a href="{{ route('home') }}" class="text-decoration-none text-light">@lang('app.product')</a> - {{ $category->getName() }}
+            <a href="{{ route('home') }}" class="text-decoration-none text-dark">@lang('app.product')</a> - {{ $category->getName() }}
         </div>
         <div class="row g-3 mb-3">
-            @foreach($products as $products)
-                <div class="col-6 col-sm-4 col-lg-2 mb-2 p-3">
-                    <a href="{{ route('product', $product->slug}}">
-                        <img src="{{ asset('img/seasons/season.jpg') }}" alt="{{ $product->name }}" class="img-fluid rounded-4 p-2">
-                    </a>
+            @foreach($products as $product)
+                <div class="col-6 col-sm-4 col-lg-3 mb-2 p-3">
+                    @include('client.app.product')
                 </div>
             @endforeach
         </div>
-        {{ $category->links() }}
+        {{ $products->links() }}
     </div>
 @endsection

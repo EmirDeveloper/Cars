@@ -23,7 +23,7 @@
             <tr class="text-center">
                 <th scope="col">ID</th>
                 <th scope="col">@lang('app.sortOrder')</th>
-                <th scope="col"><img src="{{ asset('img/flag/tkm.png') }}" alt="Türkmen" height="15"> Name</th>
+                <th scope="col"><img src="{{ asset('img/flag/tm.png') }}" alt="Türkmen" height="15"> Name</th>
                 <th scope="col"><img src="{{ asset('img/flag/eng.png') }}" alt="English" height="15"> Name</th>
                 <th scope="col">@lang('app.product_names')</th>
                 <th scope="col">@lang('app.values')</th>

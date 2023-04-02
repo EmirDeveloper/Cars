@@ -25,4 +25,25 @@ class HomeController extends Controller
             'new' => $new,
         ]);
     }
+
+
+    public function language($locale)
+    {
+        switch ($locale) {
+            case 'tm':
+                session()->put('locale', 'tm');
+                return redirect()->back();
+                break;
+            case 'en':
+                session()->put('locale', 'en');
+                return redirect()->back();
+                break;
+            case 'ru':
+                session()->put('locale', 'ru');
+                return redirect()->back();
+                break;
+            default:
+                return redirect()->back();
+        }
+    }
 }

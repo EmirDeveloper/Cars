@@ -54,7 +54,7 @@ class CategoryController extends Controller
             'name_en' => $request->name_en ?: null,
             'product_name_tm' => $request->product_name_tm ?: null,
             'product_name_en' => $request->product_name_en ?: null,
-            'sort_order' => $request->name_tm,
+            'sort_order' => $request->sort_order,
         ]);
 
         if ($request->hasFile('image')) {

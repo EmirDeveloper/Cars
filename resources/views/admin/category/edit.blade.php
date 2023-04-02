@@ -35,7 +35,7 @@
 
                 <div class="mb-3">
                     <label for="name_tm" class="form-label fw-semibold">
-                        <img src="{{ asset('img/flag/tkm.png') }}" alt="Türkmen" height="15">
+                        <img src="{{ asset('img/flag/tm.png') }}" alt="Türkmen" height="15">
                         @lang('app.name')
                         <span class="text-danger">*</span>
                     </label>
@@ -58,7 +58,7 @@
 
                 <div class="mb-3">
                     <label for="product_name_tm" class="form-label fw-semibold">
-                        <img src="{{ asset('img/flag/tkm.png') }}" alt="Türkmen" height="15">
+                        <img src="{{ asset('img/flag/tm.png') }}" alt="Türkmen" height="15">
                         Product name
                     </label>
                     <input type="text" class="form-control @error('product_name_tm') is-invalid @enderror" name="product_name_tm" id="product_name_tm" value="{{ $obj->product_name_tm }}">

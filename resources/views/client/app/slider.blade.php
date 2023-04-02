@@ -7,6 +7,7 @@
             </li>
             <li class="splide__slide">
                 <img src="storage/images/slider/slider2.jpg" alt="" class="">
+                <!-- <img src="{{ storage_path('/images/slider/slider2.jpg') }}" alt="" class="">  hem bolup biler -->
             </li>
         </ul>
     </div>

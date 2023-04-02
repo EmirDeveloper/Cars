@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <div class="mb-1">
-                            <img src="{{ asset('img/flag/tkm.png') }}" alt="Türkmen" width="25" height="15"
+                            <img src="{{ asset('img/flag/tm.png') }}" alt="Türkmen" width="25" height="15"
                                  class="mb-1">
                             {{ $obj->full_name_tm }}
                         </div>

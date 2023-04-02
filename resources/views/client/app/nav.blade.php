@@ -4,13 +4,24 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbars">
+        <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul class="navbar-nav ms-auto">
-                @foreach($categories as $category)
-                    <a class="link-light text-decoration-none mx-2" href="{{ route('category', $category->slug) }}">
-                        {{ $category->getName() }}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">
+                        @lang('app.categories')
                     </a>
-                @endforeach
+                    <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                        @foreach($categories as $category)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('category.show', $category->slug) }}">
+                                    {{ $category->getName() }}
+                                    <span class="badge text-bg-info bg-opacity-10">{{ $category->products_count }}</span>
+                                    <span class="badge text-bg-warning bg-opacity-10">{{ $category->out_of_stock_products_count }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 @auth('customer_web')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
@@ -28,19 +39,15 @@
                         </a>
                     </li>
                 @endauth
-                @if(app()->getLocale() == 'en')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('language', 'tm') }}">
-                            <img src="{{ asset('img/flag/tkm.png') }}" alt="Türkmen" style="height:1rem;">
-                        </a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('language', 'en') }}">
-                            <img src="{{ asset('img/flag/eng.png') }}" alt="English" style="height:1rem;">
-                        </a>
-                    </li>
-                @endif
+                @foreach($locales as $locale)
+                    @if(app()->getLocale() != $locale)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('language', $locale) }}">
+                                <img src="{{ asset('img/flag/' . $locale . '.png') }}" alt="{{ $locale }}" style="height:1rem;">
+                            </a>
+                        </li>
+                    @endif
+                @endforeach()
             </ul>
         </div>
     </div>

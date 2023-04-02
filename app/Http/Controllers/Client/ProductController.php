@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Verification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -18,8 +20,8 @@ class ProductController extends Controller
         $request->validate([
             'q' => 'nullable|string|max:255',
 
-            'u' => 'nullable|array',
-            'u.*' => 'nullable|integer|min:0|distinct',
+            'cs' => 'nullable|array',
+            'cs.*' => 'nullable|integer|min:0|distinct',
 
             'c' => 'nullable|array',
             'c.*' => 'nullable|integer|min:0|distinct',
@@ -29,6 +31,9 @@ class ProductController extends Controller
 
             'y' => 'nullable|array',
             'y.*' => 'nullable|integer|min:0|distinct',
+
+            'ver' => 'nullable|array',
+            'ver.*' => 'nullable|integer|min:0|distinct',
 
             'v' => 'nullable|array',
             'v.*' => 'nullable|array',
@@ -43,11 +48,17 @@ class ProductController extends Controller
             'swap' => 'nullable|boolean',
 
             'phone' => 'nullable|string|max:255',
+
+            
+            'color' => 'nullable|string|max:255',
+
+            'motor' => 'nullable|string|max:255',
         ]);
 
         $q = $request->has('q') ? $request->q : null;
-        $f_users = $request->has('u') ? $request->u : [];
+        $f_customers = $request->has('cs') ? $request->cs : [];
         $f_categories = $request->has('c') ? $request->c : [];
+        $f_verifications = $request->has('ver') ? $request->ver : [];
         $f_brands = $request->has('b') ? $request->b : [];
         $f_years = $request->has('y') ? $request->y : [];
         $f_values = $request->has('v') ? $request->v : [];
@@ -56,6 +67,8 @@ class ProductController extends Controller
         $swap = $request->has('swap') ? $request->swap : [];
         $phone = $request->phone ?: null;
         $price = $request->p ?: null;
+        $motor = $request->has('motor') ? AttributeValue::findOrFail($request->motor) : null;
+        $color = $request->has('color') ? AttributeValue::findOrFail($request->color) : null;
 
         $products = Product::when($q, function ($query, $q) {
             return $query->where(function ($query) use ($q) {
@@ -64,11 +77,14 @@ class ProductController extends Controller
                 $query->orWhere('slug', 'like', '%' . $q . '%');
             });
         })
-        ->when($f_users, function ($query, $f_users) {
-            $query->whereIn('user_id', $f_users);
+        ->when($f_customers, function ($query, $f_customers) {
+            $query->whereIn('customer_id', $f_customers);
         })
         ->when($f_categories, function ($query, $f_categories) {
             $query->whereIn('category_id', $f_categories);
+        })
+        ->when($f_verifications, function ($query, $f_verifications) {
+            $query->whereIn('verification_id', $f_verifications);
         })
         ->when($f_brands, function ($query, $f_brands) {
             $query->whereIn('brand_id', $f_brands);
@@ -100,29 +116,40 @@ class ProductController extends Controller
         ->when($price, function ($query, $price) {
             $query->where('price', $price);
         })
+        ->when($motor, function ($query, $motor) {
+            $query->where('motor', $motor);
+        })
+        ->when($color, function ($query, $color) {
+            $query->where('color', $color);
+        })
         ->orderBy('id', 'desc')
         ->paginate(24);
 
         $products = $products->appends([
             'q' => $q,
-            'u' => $f_users,
+            'cs' => $f_customers,
             'c' => $f_categories,
             'b' => $f_brands,
             'y' => $f_years,
             'v' => $f_values,
             'price' => $price,
             'f_description' => $f_description,
+            'f_verifications' => $f_verifications,
             'credit' => $credit,
             'swap' => $swap,
             'phone' => $phone,
+            'motor' => $motor,
+            'color' => $color,
         ]);
 
-        $users = User::orderBy('name')
+        $customers = User::orderBy('name')
             ->get();
         $categories = Category::orderBy('sort_order')
             ->orderBy('slug')
             ->get();
         $brands = Brand::orderBy('slug')
+            ->get();
+        $verifications = Verification::orderBy('id')
             ->get();
         $attributes = Attribute::with('values')
             ->orderBy('sort_order')
@@ -131,13 +158,14 @@ class ProductController extends Controller
         return view('client.product.index')
         ->with([
             'q' => $q,
-            'f_users' => collect($f_users),
+            'f_customers' => collect($f_customers),
             'f_categories' => collect($f_categories),
+            'verifications' => collect($verifications),
             'f_brands' => collect($f_brands),
             'f_years' => collect($f_years),
             'f_values' => collect($f_values)->collapse(),
             'products' => $products,
-            'users' => $users,
+            'customers' => $customers,
             'categories' => $categories,
             'brands' => $brands,
             'attributes' => $attributes,
@@ -146,6 +174,8 @@ class ProductController extends Controller
             'credit' => $credit,
             'swap' => $swap,
             'phone' => $phone,
+            'motor' => $motor,
+            'color' => $color,
         ]);
     }
 
@@ -178,17 +208,22 @@ class ProductController extends Controller
             ->with('category', 'brand')
             ->firstOrFail();
 
+        $brand = Brand::findOrFail($product->brand_id);
         $category = Category::findOrFail($product->category_id);
         $products = Product::where('category_id', $category->id)
+            ->where('brand_id', $brand->id)
             ->inRandomOrder()
             ->take(6)
-            ->get();
+            ->get([
+                'id', 'category_id', 'location_id', 'name_tm', 'name_en', 'slug', 'price', 'credit', 'swap', 'motor', 'description',  'created_at'
+            ]);
 
         return view('client.product.show')
             ->with([
                 'product' => $product,
                 'category' => $category,
                 'products' => $products,
+                'brand' => $brand,
             ]);
     }
 }

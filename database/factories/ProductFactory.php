@@ -54,6 +54,7 @@ class ProductFactory extends Factory
             'full_name_en' => $fullNameEn,
             'credit' => fake()->boolean(30),
             'swap' => fake()->boolean(30),
+            'motor' => fake()->randomFloat($nbMaxDecimals = 1, $min = 2, $max = 4),
             'phone' => rand(60000000, 65999999),
             'price' => fake()->randomFloat($nbMaxDecimals = 0, $min = 30000, $max = 50000),
             'created_at' => fake()->dateTimeBetween('-5 month', 'now')->format('Y-m-d H:i:s'),

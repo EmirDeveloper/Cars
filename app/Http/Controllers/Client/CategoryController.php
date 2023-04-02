@@ -15,11 +15,10 @@ class CategoryController extends Controller
             ->with('parent')
             ->firstOrFail();
         $products = Product::where('category_id', $category->id)
-            ->with('customer')
-            ->orderBy('random')
+            ->with('location.parent', 'category.parent')
             ->simplePaginate(24);
 
-        return view('category.show')
+        return view('client.category.show')
             ->with([
                 'category' => $category,
                 'products' => $products,

@@ -44,6 +44,39 @@
                         {{ $product->description }}
                     </div>
                 @endif
+                @if($product->phone)
+                    <div class="mb-2">
+                        <span class="fs-4 fw-semibold text-primary mb-2">Telefony: </span><span class="fs-4 fw-semibold">+993 {{ $product->phone }}</span>
+                    </div>
+                @endif
+                <div>
+                    @if($product->motor)
+                        <div class="mb-2">
+                            <span class="fs-4 fw-semibold text-primary mb-2">Motory: </span> <span class="fs-4 fw-semibold">{{ $product->motor }}</span> 
+                        </div>
+                    @endif
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        @if($product->credit)
+                            <span class="fs-4 fw-semibold text-primary mb-2">Kredit <i class="bi-check-circle-fill text-success"></span>
+                        @else
+                            <span class="fs-4 fw-semibold text-primary mb-2">Kredit <i class="bi-x-square-fill text-danger"></i></span>
+                        @endif
+                    </div>
+                    <div class="col-3">
+                        @if($product->swap)
+                            <span class="fs-4 fw-semibold text-primary mb-2">Obmen <i class="bi-check-circle-fill text-success"></span>
+                        @else
+                            <span class="fs-4 fw-semibold text-primary mb-2">Obmen <i class="bi-x-square-fill text-danger"></i></span>
+                        @endif
+                    </div>
+                </div>
+                <div>
+                    @if($product->viewed)
+                        <i class="bi-eye fs-4 fw-semibold text-primary mb-2">{{ $product->viewed }}</i>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
