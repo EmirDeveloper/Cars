@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
                 Customer::factory()
                     ->has(CustomerAddress::factory()->count(rand(1, 2)), 'addresses')
                     ->create([
-                        'phone' => $verification->phone,
+                        'username' => $verification->phone,
                         'password' => bcrypt($verification->code),
                         'created_at' => $verification->created_at,
                         'updated_at' => $verification->updated_at,
