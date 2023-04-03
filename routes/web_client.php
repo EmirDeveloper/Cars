@@ -2,6 +2,8 @@
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CategoryController;
+use App\Http\Controllers\Client\VerificationController;
+use App\Http\Controllers\Client\LoginController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,10 +32,10 @@ Route::controller(ProductController::class)
     });
 
 Route::controller(VerificationController::class)
-    ->middleware(['guest:customer_web', 'throttle:3,1'])
+    ->middleware(['guest:customer_web', 'throttle:10,1'])
     ->group(function () {
-        Route::get('/verification', 'create')->name('verification');
-        Route::post('/verification', 'store');
+        Route::get('verification', 'create')->name('verification');
+        Route::post('verification', 'store');
     });
 
 Route::controller(LoginController::class)

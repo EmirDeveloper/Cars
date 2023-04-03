@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Verification;
@@ -208,14 +209,12 @@ class ProductController extends Controller
             ->with('category', 'brand')
             ->firstOrFail();
 
-        $brand = Brand::findOrFail($product->brand_id);
         $category = Category::findOrFail($product->category_id);
         $products = Product::where('category_id', $category->id)
-            ->where('brand_id', $brand->id)
             ->inRandomOrder()
             ->take(6)
             ->get([
-                'id', 'category_id', 'location_id', 'name_tm', 'name_en', 'slug', 'price', 'credit', 'swap', 'motor', 'description',  'created_at'
+                'id', 'category_id', 'location_id', 'name_tm', 'name_en', 'slug', 'price', 'credit', 'swap', 'description',  'created_at'
             ]);
 
         return view('client.product.show')
@@ -223,7 +222,6 @@ class ProductController extends Controller
                 'product' => $product,
                 'category' => $category,
                 'products' => $products,
-                'brand' => $brand,
             ]);
     }
 }

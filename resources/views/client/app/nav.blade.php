@@ -22,6 +22,22 @@
                         @endforeach
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">
+                        @lang('app.add')
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                        @foreach($categories as $category)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('category.show', $category->slug) }}">
+                                    {{ $category->getName() }}
+                                    <span class="badge text-bg-info bg-opacity-10">{{ $category->products_count }}</span>
+                                    <span class="badge text-bg-warning bg-opacity-10">{{ $category->out_of_stock_products_count }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 @auth('customer_web')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"

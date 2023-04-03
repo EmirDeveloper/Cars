@@ -4,6 +4,7 @@ return [
     'app-name' => 'TM-CARS',
     'search' => 'Gözleg',
 
+    'phone' => 'Telefon',
     'dashboard' => 'Panel',
     'user' => 'Ulanyjy',
     'users' => 'Ulanyjylar',

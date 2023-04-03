@@ -32,7 +32,6 @@ return new class extends Migration
             $table->string('phone');
             $table->boolean('swap')->default(0);
             $table->boolean('credit')->default(0);
-            $table->string('motor');
             $table->unsignedInteger('viewed')->default(0);
             $table->unsignedInteger('sold')->default(0);
             $table->string('slug')->unique();

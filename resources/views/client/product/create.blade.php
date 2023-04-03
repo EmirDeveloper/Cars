@@ -15,7 +15,6 @@
         <div class="row mb-3 pe-4">
             @csrf
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-
                 <div class="mb-3">
                     <label for="brand" class="form-label fw-semibold">
                         Brand
@@ -46,21 +45,6 @@
                         @endforeach
                     </select>
                     @error('category')
-                    <div class="alert alert-danger mt-2">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="discount_percent" class="form-label fw-semibold">
-                        @lang('app.discountPercent')
-                    </label>
-                    <div class="input-group mb-3">
-                        <input type="number" min="0"
-                               class="form-control @error('discount_percent') is-invalid @enderror"
-                               name="discount_percent" id="discount_percent" value="0">
-                        <label class="input-group-text" for="discount_percent">%</label>
-                    </div>
-                    @error('discount_percent')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>

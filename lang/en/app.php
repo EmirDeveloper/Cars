@@ -4,6 +4,7 @@ return [
     'app-name' => 'TM-CARS',
     'search' => 'Search',
 
+    'phone' => 'Phone',
     'dashboard' => 'Dashboard',
     'user' => 'User',
     'users' => 'Users',

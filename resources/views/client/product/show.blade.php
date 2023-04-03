@@ -30,29 +30,40 @@
                         </div>
                     @endauth
                 </div>
-                @if($product->brand->image)
-                    <div class="my-3">
-                        <img src="{{ Storage::url('brands/' . $product->brand->image) }}" alt="{{ $product->brand->getName() }}" class="img-fluid bg-dark rounded shadow p-2">
-                    </div>
-                @endif
-                <div class="fs-4 fw-semibold text-primary mb-2">
-                    {{ number_format($product->price, 2, '.', ' ') }}
+                <div>
+                    @if($product->location)
+                        <div class="fs-4 fw-semibold">
+                            <span class="text-primary mb-2">Ýeri: </span> {{ $product->location->getName() }}
+                        </div>
+                    @endif
+                    @if($product->category)
+                        <div class="fs-4 fw-semibold">
+                            <span class="text-primary mb-2">Kategoriýa: </span> {{ $product->category->getName() }}
+                        </div>
+                    @endif
+                </div>
+                <div class="fs-4 fw-semibold">
+                    <span class="text-primary mb-2">Bahasy: </span> {{ number_format($product->price, 2, '.', ' ') }}
                     <small>TMT</small>
                 </div>
-                @if($product->description)
-                    <div class="mb-2">
-                        {{ $product->description }}
-                    </div>
-                @endif
-                @if($product->phone)
-                    <div class="mb-2">
-                        <span class="fs-4 fw-semibold text-primary mb-2">Telefony: </span><span class="fs-4 fw-semibold">+993 {{ $product->phone }}</span>
-                    </div>
-                @endif
+                <div>
+                    @if($product->phone)
+                        <div class="mb-2">
+                            <span class="fs-4 fw-semibold text-primary mb-2">Telefony: </span><span class="fs-4 fw-semibold">+993 {{ $product->phone }}</span>
+                        </div>
+                    @endif
+                </div>
                 <div>
                     @if($product->motor)
                         <div class="mb-2">
-                            <span class="fs-4 fw-semibold text-primary mb-2">Motory: </span> <span class="fs-4 fw-semibold">{{ $product->motor }}</span> 
+                            <span class="fs-4 fw-semibold text-primary">Motory: </span> <span class="fs-4 fw-semibold">{{ $product->motor->name_tm }}</span> 
+                        </div>
+                    @endif
+                </div>
+                <div>
+                    @if($product->color)
+                        <div class="mb-2">
+                            <span class="fs-4 fw-semibold text-primary">Motory: </span> <span class="fs-4 fw-semibold">{{ $product->color->name_tm }}</span> 
                         </div>
                     @endif
                 </div>
@@ -75,6 +86,13 @@
                 <div>
                     @if($product->viewed)
                         <i class="bi-eye fs-4 fw-semibold text-primary mb-2">{{ $product->viewed }}</i>
+                    @endif
+                </div>
+                <div>
+                    @if($product->description)
+                        <div class="mb-2">
+                            {{ $product->description }}
+                        </div>
                     @endif
                 </div>
             </div>

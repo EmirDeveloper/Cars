@@ -6,7 +6,7 @@
         </div>
     @elseif(!empty($success))
         <div class="alert alert-success alert-dismissible fade show fs-5 mt-3" role="alert">
-            {!! $success !!}
+            {!! $success !!} {{$code}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
