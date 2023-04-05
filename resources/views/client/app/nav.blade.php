@@ -23,20 +23,17 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">
-                        @lang('app.add')
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                        @foreach($categories as $category)
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-plus-circle"></i> @lang('app.add')
+                        </a>
+                        <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('category.show', $category->slug) }}">
-                                    {{ $category->getName() }}
-                                    <span class="badge text-bg-info bg-opacity-10">{{ $category->products_count }}</span>
-                                    <span class="badge text-bg-warning bg-opacity-10">{{ $category->out_of_stock_products_count }}</span>
+                                <a class="dropdown-item" href="{{ route('product.create') }}">
+                                    @lang('app.product')
                                 </a>
                             </li>
-                        @endforeach
-                    </ul>
+                        </ul>
+                    </li>
                 </li>
                 @auth('customer_web')
                     <li class="nav-item">

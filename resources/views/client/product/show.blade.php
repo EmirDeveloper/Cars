@@ -60,13 +60,6 @@
                         </div>
                     @endif
                 </div>
-                <div>
-                    @if($product->color)
-                        <div class="mb-2">
-                            <span class="fs-4 fw-semibold text-primary">Motory: </span> <span class="fs-4 fw-semibold">{{ $product->color->name_tm }}</span> 
-                        </div>
-                    @endif
-                </div>
                 <div class="row">
                     <div class="col-2">
                         @if($product->credit)
