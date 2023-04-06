@@ -22,7 +22,6 @@ Route::controller(CategoryController::class)
 Route::controller(ProductController::class)
     ->group(function () {
         Route::get('product/index', 'index')->name('product.index');
-        Route::post('', 'store')->name('product.store');
         Route::get('product/create', 'create')->name('product.create')->where('id', '[0-9]+');
         Route::get('product/destroy/{id}', 'destroy')->name('product.destroy')->where('id', '[0-9]+');
         Route::get('product/update/{id}', 'update')->name('product.update')->where('id', '[0-9]+');

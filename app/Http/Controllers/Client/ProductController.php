@@ -53,10 +53,6 @@ class ProductController extends Controller
             'swap' => 'nullable|boolean',
 
             'phone' => 'nullable|string|max:255',
-
-            'color' => 'nullable|string|max:255',
-
-            'motor' => 'nullable|string|max:255',
         ]);
 
         $q = $request->has('q') ? $request->q : null;
@@ -120,13 +116,8 @@ class ProductController extends Controller
         ->when($price, function ($query, $price) {
             $query->where('price', $price);
         })
-        ->when($motor, function ($query, $motor) {
-            $query->where('motor', $motor);
-        })
-        ->when($color, function ($query, $color) {
-            $query->where('color', $color);
-        })
         ->orderBy('id', 'desc')
+        ->with('category', 'location.parent')
         ->paginate(24);
 
         $products = $products->appends([

@@ -12,7 +12,7 @@
             @lang('app.add')
         </div>
 
-        <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('product.create') }}" method="get" enctype="multipart/form-data">
             <div class="row mb-3 pe-4">
                 @csrf
                 <div class="col-10 col-sm-8 col-md-6 col-lg-4">
