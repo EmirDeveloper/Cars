@@ -22,18 +22,10 @@
                         @endforeach
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi-plus-circle"></i> @lang('app.add')
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('product.create') }}">
-                                    @lang('app.product')
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('product.create') }}" href="#" aria-expanded="false">
+                        <i class="bi-plus-circle"></i> @lang('app.add')
+                    </a>
                 </li>
                 @auth('customer_web')
                     <li class="nav-item">
