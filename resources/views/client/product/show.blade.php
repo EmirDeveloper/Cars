@@ -90,5 +90,8 @@
                 </div>
             </div>
         </div>
+        @if($products->count() > 0)
+            @include('client.product.products')
+        @endif
     </div>
 @endsection

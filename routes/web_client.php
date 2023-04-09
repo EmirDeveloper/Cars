@@ -23,8 +23,10 @@ Route::controller(ProductController::class)
     ->group(function () {
         Route::get('product/index', 'index')->name('product.index');
         Route::get('product/create', 'create')->name('product.create')->where('id', '[0-9]+');
-        Route::get('product/destroy/{id}', 'destroy')->name('product.destroy')->where('id', '[0-9]+');
-        Route::get('product/update/{id}', 'update')->name('product.update')->where('id', '[0-9]+');
+        Route::post('product/store', 'store')->name('product.store')->where('id', '[0-9]+');
+        Route::delete('product/destroy/{id}', 'destroy')->name('product.destroy')->where('id', '[0-9]+');
+        Route::get('product/edit/{id}', 'edit')->name('product.edit')->where('id', '[0-9]+');
+        Route::put('product/update/{id}', 'update')->name('product.update')->where('id', '[0-9]+');
         Route::get('product/show/{slug}', 'show')->name('product.show')->where('slug', '[A-Za-z0-9-]+');
         Route::get('/product/{slug}', 'product')->name('product')->where('slug', '[A-Za-z0-9-]+');
         Route::get('/category/{slug}', 'category')->name('category')->where('slug', '[A-Za-z0-9-]+');

@@ -12,7 +12,9 @@
             @lang('app.add')
         </div>
 
-        <form action="{{ route('product.create') }}" method="get" enctype="multipart/form-data">
+        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+        @method('POST')
+        @csrf
             <div class="row mb-3 pe-4">
                 @csrf
                 <div class="col-10 col-sm-8 col-md-6 col-lg-4">
@@ -138,6 +140,22 @@
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label fw-semibold">
+                            @lang('app.phone')
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group mb-3">
+                        <span class="input-group-text">+993</span>
+                            <input type="number" min="60000000" max="65999999" class="form-control @error('phone') is-invalid @enderror"
+                                name="phone" id="phone" required>
+                        </div>
+                        @error('price')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 </div>
                 <div class="col-10 col-sm-8 col-md-6 col-lg-4">
 

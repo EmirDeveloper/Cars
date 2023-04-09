@@ -187,19 +187,19 @@ class ProductController extends Controller
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|min:0',
+            'phone' => 'required|string|min:0',
             'swap' => 'nullable|boolean|min:0',
             'credit' => 'nullable|boolean|min:0',
-            'viewed' => 'nullable|integer|min:0',
+            'viewed' => 'nullable|integer|min:0', // viewed awtomatiki usulda kopelya
             'price' => 'required|numeric|min:0',
-            'sold' => 'nullable|integer|min:0',
+            'sold' => 'nullable|integer|min:0', // sold awtomatiki usulda kopelya
             'slug' => 'nullable|string|max:255',
-            'favorites' => 'nullable|integer|min:0',
+            'favorites' => 'nullable|integer|min:0', // favorites awtomatiki usulda kopelya
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:128|dimensions:width=1000,height=1000',
         ]);
         $brand = Brand::findOrFail($request->brand);
-        $category = Category::findOrFail($request->brand);
+        $category = Category::findOrFail($request->category);
         $location = Location::findOrFail($request->location);
         $year = Year::findOrFail($request->year);
         $motor = $request->has('motor') ? AttributeValue::findOrFail($request->motor) : null;
@@ -228,12 +228,12 @@ class ProductController extends Controller
             'slug' => str()->slug($fullNameTm) . '-' . str()->random(10),
             'price' => $request->price,
             'description' => $request->description,
-            'phone' => $request->phone ?: null,
-            'swap' => $request->swap ?: null,
-            'credit' => $request->credit ?: null,
-            'viewed' => $request->viewed ?: null,
-            'sold' => $request->sold ?: null,
-            'favorites' => $request->favorites ?: null,
+            'phone' => $request->phone,
+            'swap' => $request->swap ?: 0,
+            'credit' => $request->credit ?: 0,
+            // 'viewed' => $request->viewed ?: null,
+            // 'sold' => $request->sold ?: null,
+            // 'favorites' => $request->favorites ?: null,
         ]);
 
         if ($request->has('images')) {
@@ -255,9 +255,9 @@ class ProductController extends Controller
             $obj->update();
         }
 
-        return to_route('client.product.index')
+        return to_route('product.index')
             ->with([
-                'success' => @trans('app.product') . $obj->getName() . @trans('app.added') . '!'
+                'success' => @trans('app.product') . ' ' . $obj->getName() . ' ' . @trans('app.added') . '!'
             ]);
     }
 
@@ -301,6 +301,7 @@ class ProductController extends Controller
 
         $category = Category::findOrFail($product->category_id);
         $products = Product::where('category_id', $category->id)
+            ->with('category', 'location.parent')
             ->inRandomOrder()
             ->take(6)
             ->get([
