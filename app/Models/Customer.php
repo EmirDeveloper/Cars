@@ -25,7 +25,6 @@ class Customer extends Authenticatable
 
     const UPDATED_AT = null;
 
-
     public function addresses()
     {
         return $this->hasMany(CustomerAddress::class)

@@ -84,7 +84,7 @@
                 <div>
                     @if($product->description)
                         <div class="mb-2">
-                            {{ $product->description }}
+                            <span class="h6 fw-bold">@lang('app.description'): </span>{{ $product->description }}
                         </div>
                     @endif
                 </div>

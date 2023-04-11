@@ -4,7 +4,9 @@ use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CategoryController;
 use App\Http\Controllers\Client\VerificationController;
 use App\Http\Controllers\Client\LoginController;
+use App\Http\Controllers\Client\MessageController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 
 Route::controller(HomeController::class)
@@ -17,6 +19,11 @@ Route::controller(CategoryController::class)
     ->group(function () {
         Route::get('category/show/{slug}', 'show')->name('category.show')->where('slug', '[A-Za-z0-9-]+');
         Route::get('category/create', 'create')->name('category.create')->where('id', '[0-9]+');
+    });
+
+Route::controller(MessageController::class)->group(function () {
+    Route::get('/message', 'index')->name('message')->middleware(ProtectAgainstSpam::class);
+    Route::post('/message/store', 'store')->name('message.store')->middleware(ProtectAgainstSpam::class);
     });
 
 Route::controller(ProductController::class)

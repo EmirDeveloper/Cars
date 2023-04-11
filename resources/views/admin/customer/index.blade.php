@@ -5,7 +5,6 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="h4 mb-0 text-primary">
-            <i class="bi-people-fill text-primary me-1"></i>
             @lang('app.customers')
         </div>
         <div>
@@ -29,7 +28,7 @@
                 <tr>
                     <td>{{ $obj->id }}</td>
                     <td>{{ $obj->name }}</td>
-                    <td>{{ $obj->phone }}</td>
+                    <td>{{ $obj->username }}</td>
                     <td>{{ $obj->created_at }}</td>
                     <td>{{ $obj->updated_at }}</td>
                 </tr>

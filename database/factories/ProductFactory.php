@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\AttributeValue;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Location;
 use App\Models\Year;
 use Illuminate\Database\Eloquent\Factories\Factory;

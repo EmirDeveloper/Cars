@@ -35,6 +35,11 @@
                     </a>
                 </li>
             @endcan
+            <li class="nav-item">
+                <a class="nav-link color-b" href="{{ route('messages.index') }}">
+                    <i class="bi bi-chat-dots-fill me-1"></i> @lang('app.messages')
+                </a>
+            </li>
             @can('attributes')
                 <li class="nav-item">
                     <a class="nav-link link-primary" href="{{ route('admin.attributes.index') }}">

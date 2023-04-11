@@ -158,7 +158,6 @@
 
                 </div>
                 <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-
                     @foreach($attributes as $attribute)
                         <div class="mb-3">
                             <label for="{{ strtolower($attribute->name_en) }}" class="form-label fw-semibold">
@@ -176,10 +175,44 @@
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
-
                     @endforeach
+                    <div class="mb-3">
+                        <label for="price" class="form-label fw-semibold">
+                            @lang('app.description')
+                            <span class="text-danger">*</span>
+                        </label>
+                        <textarea class="form-control @error('description') is-invalid @enderror"
+                            name="description" id="description">
+                        </textarea>
+                        @error('description')
+                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="row">
+                        <div class="col-3 mt-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="credit" id="credit" value="1">
+                                <label class="form-check-label" for="credit">
+                                    @lang('app.credit')
+                                </label>
+                                @error('credit')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-3 mt-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="swap" id="swap" value="1">
+                                <label class="form-check-label" for="swap">
+                                    @lang('app.swap')
+                                </label>
+                                @error('swap')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
+                            </div> 
+                        </div>
+                    </div>
                 </div>
-
                 <button type="submit" class="btn btn-primary">
                     @lang('app.add')
                 </button>

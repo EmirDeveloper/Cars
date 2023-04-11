@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\YearController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VerificationController;
+use App\Http\Controllers\Admin\MessageController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -44,4 +45,10 @@ Route::middleware('auth')
         Route::resource('locations', LocationController::class)->except(['show'])->middleware('can:locations');
         Route::resource('years', YearController::class)->except(['show'])->middleware('can:years');
         Route::resource('users', UserController::class)->except(['show'])->middleware('can:users');
+    });
+
+Route::controller(MessageController::class)->prefix('messages')->name('messages.')
+    ->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::delete('/{id}/delete', 'delete')->name('delete')->where('id', '[0-9]+');
     });

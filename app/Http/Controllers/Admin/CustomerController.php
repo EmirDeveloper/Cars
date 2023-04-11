@@ -12,29 +12,25 @@ class CustomerController extends Controller
     {
         $request->validate([
             'q' => ['nullable', 'string', 'max:255'],
-            'name' => ['reqiured', 'string', 'max:255'],
-            'phone' => ['reqiured', 'string', 'max:255'],
+            'name' => ['nullable', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:255'],
         ]);
 
         $q = $request->q ?: null;
         $name = $request->name;
-        $phone = $request->phone;
-        $password = $request->password;
+        $username = $request->username;
 
         $objs = Customer::when($q, function ($query, $q) {
             return $query->where(function ($query) use ($q) {
                 $query->orWhere('name', 'like', '%' . $q . '%');
-                $query->orWhere('phone', 'like', '%' . $q . '%');
+                $query->orWhere('username', 'like', '%' . $q . '%');
             });
         })
         ->when(isset($name), function ($query) use ($name) {
             return $query->where('name', $name);
         })
-        ->when(isset($phone), function ($query) use ($phone) {
-            return $query->where('phone', $phone);
-        })
-        ->when(isset($password), function ($query) use ($password) {
-            return $query->where('status', $password);
+        ->when(isset($phone), function ($query) use ($username) {
+            return $query->where('username', $username);
         })
             ->orderBy('id', 'desc')
             ->paginate(50)
@@ -44,12 +40,6 @@ class CustomerController extends Controller
             ->with([
                 'objs' => $objs,
             ]);
-    }
-
-
-    public function show() 
-    {
-
     }
 
 

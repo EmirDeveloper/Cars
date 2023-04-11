@@ -25,9 +25,6 @@ class ProductController extends Controller
         $request->validate([
             'q' => 'nullable|string|max:255',
 
-            'cs' => 'nullable|array',
-            'cs.*' => 'nullable|integer|min:0|distinct',
-
             'c' => 'nullable|array',
             'c.*' => 'nullable|integer|min:0|distinct',
 
@@ -36,9 +33,6 @@ class ProductController extends Controller
 
             'y' => 'nullable|array',
             'y.*' => 'nullable|integer|min:0|distinct',
-
-            'ver' => 'nullable|array',
-            'ver.*' => 'nullable|integer|min:0|distinct',
 
             'v' => 'nullable|array',
             'v.*' => 'nullable|array',
@@ -56,9 +50,7 @@ class ProductController extends Controller
         ]);
 
         $q = $request->has('q') ? $request->q : null;
-        $f_customers = $request->has('cs') ? $request->cs : [];
         $f_categories = $request->has('c') ? $request->c : [];
-        $f_verifications = $request->has('ver') ? $request->ver : [];
         $f_brands = $request->has('b') ? $request->b : [];
         $f_years = $request->has('y') ? $request->y : [];
         $f_values = $request->has('v') ? $request->v : [];
@@ -77,14 +69,8 @@ class ProductController extends Controller
                 $query->orWhere('slug', 'like', '%' . $q . '%');
             });
         })
-        ->when($f_customers, function ($query, $f_customers) {
-            $query->whereIn('customer_id', $f_customers);
-        })
         ->when($f_categories, function ($query, $f_categories) {
             $query->whereIn('category_id', $f_categories);
-        })
-        ->when($f_verifications, function ($query, $f_verifications) {
-            $query->whereIn('verification_id', $f_verifications);
         })
         ->when($f_brands, function ($query, $f_brands) {
             $query->whereIn('brand_id', $f_brands);
@@ -122,14 +108,12 @@ class ProductController extends Controller
 
         $products = $products->appends([
             'q' => $q,
-            'cs' => $f_customers,
             'c' => $f_categories,
             'b' => $f_brands,
             'y' => $f_years,
             'v' => $f_values,
             'price' => $price,
             'f_description' => $f_description,
-            'f_verifications' => $f_verifications,
             'credit' => $credit,
             'swap' => $swap,
             'phone' => $phone,
@@ -137,14 +121,12 @@ class ProductController extends Controller
             'color' => $color,
         ]);
 
-        $customers = User::orderBy('name')
+        $customers = Customer::orderBy('name')
             ->get();
         $categories = Category::orderBy('sort_order')
             ->orderBy('slug')
             ->get();
         $brands = Brand::orderBy('slug')
-            ->get();
-        $verifications = Verification::orderBy('id')
             ->get();
         $attributes = Attribute::with('values')
             ->orderBy('sort_order')
@@ -153,9 +135,7 @@ class ProductController extends Controller
         return view('client.product.index')
         ->with([
             'q' => $q,
-            'f_customers' => collect($f_customers),
             'f_categories' => collect($f_categories),
-            'verifications' => collect($verifications),
             'f_brands' => collect($f_brands),
             'f_years' => collect($f_years),
             'f_values' => collect($f_values)->collapse(),
@@ -292,7 +272,6 @@ class ProductController extends Controller
             ]);
     }
 
-
     public function show($slug) 
     {
         $product = Product::where('slug', $slug)
@@ -301,7 +280,7 @@ class ProductController extends Controller
 
         $category = Category::findOrFail($product->category_id);
         $products = Product::where('category_id', $category->id)
-            ->with('category', 'location.parent')
+            ->with('category', 'location.parent', 'customers')
             ->inRandomOrder()
             ->take(6)
             ->get([
