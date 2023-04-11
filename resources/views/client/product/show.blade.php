@@ -63,16 +63,32 @@
                 <div class="row">
                     <div class="col-2">
                         @if($product->credit)
-                            <span class="fs-4 fw-semibold text-primary mb-2">Kredit <i class="bi-check-circle-fill text-success"></span>
+                            <div class="m-2">
+                                <span class="d-inline-block small text-bg-success bg-opacity-75 rounded py-1 px-2">
+                                    <i class="bi-check-circle-fill"></i> @lang('app.credit')
+                                </span>
+                            </div>
                         @else
-                            <span class="fs-4 fw-semibold text-primary mb-2">Kredit <i class="bi-x-square-fill text-danger"></i></span>
+                            <div class="m-2">
+                                <span class="d-inline-block small text-bg-danger bg-opacity-75 rounded py-1 px-2">
+                                    <i class="bi-x-square"></i> @lang('app.credit')
+                                </span>
+                            </div>
                         @endif
                     </div>
                     <div class="col-3">
                         @if($product->swap)
-                            <span class="fs-4 fw-semibold text-primary mb-2">Obmen <i class="bi-check-circle-fill text-success"></span>
+                            <div class="m-2">
+                                <span class="d-inline-block small text-bg-success bg-opacity-75 rounded py-1 px-2">
+                                    <i class="bi-check-circle-fill"></i> @lang('app.swap')
+                                </span>
+                            </div>
                         @else
-                            <span class="fs-4 fw-semibold text-primary mb-2">Obmen <i class="bi-x-square-fill text-danger"></i></span>
+                        <div class="m-2">
+                                <span class="d-inline-block small text-bg-danger bg-opacity-75 rounded py-1 px-2">
+                                    <i class="bi-x-square"></i> @lang('app.swap')
+                                </span>
+                            </div>
                         @endif
                     </div>
                 </div>

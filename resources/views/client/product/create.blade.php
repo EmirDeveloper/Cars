@@ -61,7 +61,7 @@
                                 required>
                             <option value>-</option>
                             @foreach($locations as $location)
-                                <option value="{{ $category->id }}">{{ $location->getName() }}</option>
+                                <option value="{{ $location->id }}">{{ $location->getName() }}</option>
                             @endforeach
                         </select>
                         @error('location')
