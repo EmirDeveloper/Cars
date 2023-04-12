@@ -32,10 +32,8 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading(!app()->isProduction());
 
         View::composer('client.layouts.app', function ($view) {
-            $categories = Category::with('parent')
-            ->orderBy('sort_order')
-            ->orderBy('name_tm')
-            ->get(['parent_id', 'name_tm', 'slug', 'sort_order']);
+            $categories = Category::orderBy('name_tm')
+            ->get(['name_tm', 'slug']);
 
             $locales = config()->get('app.locales');
 

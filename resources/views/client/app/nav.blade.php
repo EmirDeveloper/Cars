@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-default navbar-trans navbar-dark bg-primary bg-opacity-50 fixed-top">
+<nav class="navbar navbar-expand-md navbar-default navbar-trans navbar-dark bg-primary bg-opacity-50 fixed-top p-0">
     <div class="container-xl">
         <a class="navbar-brand" href="{{ route('home') }}"><img src="https://tmcars.info/assets/logoV5-3c6d5d6233ec99725cbfc24d0c20ceee.png" alt="w" class="col-9"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">

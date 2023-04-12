@@ -22,10 +22,10 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $category = Category::doesntHave('child')->inRandomOrder()->first();
+        $category = Category::inRandomOrder()->first();
         $brand = Brand::inRandomOrder()->first();
         $year = Year::inRandomOrder()->first();
-        $location = Location::inRandomOrder()->first();
+        $location = Location::doesntHave('child')->inRandomOrder()->first();
 
         $motor = fake()->boolean(90)
             ? AttributeValue::where('attribute_id', 1)->inRandomOrder()->first() : null;

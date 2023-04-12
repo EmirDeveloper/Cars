@@ -1,41 +1,25 @@
-<form action="{{ route('client.products.index') }}" class="row align-items-center g-2" role="search" id="productFilter">
+<form action="{{ url()->current() }}" method="get">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
 
-    <div class="col-auto">
-        <a href="{{ route('client.products.index') }}" class="btn btn-sm btn-outline-danger">@lang('app.clear') <i class="bi-x"></i></a>
-    </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-heading-c">
+                <button class="accordion-button bg-color-b" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-c" aria-expanded="true" aria-controls="panelsStayOpen-collapse-c">
+                    @lang('app.categories')
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapse-c" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading-c">
+                <div class="accordion-body px-2 py-1">
+                    @foreach($category as $c)
+                        <div class="form-check my-2">
+                            <input class="form-check-input" type="checkbox" id="flexCheck-c-{{ $category->id }}" name="c[]"
+                                   value="{{ $category->id }}" {{ $category->id ? 'checked' : '' }}>
+                            <label class="form-check-label" for="flexCheck-c-{{ $category->id }}">{{ $category->getName() }}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
 
-    <div class="col">
-        <select class="form-select form-select-sm" name="brand" id="brand" size="1" onchange="$('form#productFilter').submit();">
-            <option value>@lang('app.brands')</option>
-            @foreach($brands as $brand)
-                <option value="{{ $brand->id }}" {{ $brand->id == $brand ? 'selected' : '' }}>
-                    {{ $brand->name . ' (' . $brand->products_count . ')' }}
-                </option>
-            @endforeach
-        </select>
-        @error('brand')
-        <div class="alert alert-danger mt-2">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="col">
-        <select class="form-select form-select-sm" name="category" id="category" size="1" onchange="$('form#productFilter').submit();">
-            <option value>@lang('app.categories')</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ $category->id == $f_category ? 'selected' : '' }}>
-                    {{ $category->getName() . ' (' . $category->products_count . ')' }}
-                </option>
-            @endforeach
-        </select>
-        @error('category')
-        <div class="alert alert-danger mt-2">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="col">
-        <input class="form-control form-control-sm" type="search" name="q" placeholder="{{ @trans('app.search') }}">
-    </div>
-    <div class="col-auto">
-        <button type="submit" class="btn btn-primary btn-sm"><i class="bi-search"></i></button>
+        
     </div>
 </form>
